@@ -39,13 +39,41 @@ const audioFormats = {
 };
 
 const documentFormats = {
-  input: [".pdf", ".md", ".html", ".csv", ".xlsx", ".xls"],
-  output: [".pdf", ".md", ".html", ".epub", ".xlsx", ".csv"],
+  input: [
+    ".pdf",
+    ".md",
+    ".html",
+    ".csv",
+    ".xlsx",
+    ".xls",
+    ".epub",
+    ".mobi",
+    ".azw",
+    ".azw3",
+    ".fb2",
+    ".txt",
+    ".docx",
+  ],
+  output: [
+    ".pdf",
+    ".md",
+    ".html",
+    ".epub",
+    ".xlsx",
+    ".csv",
+    ".txt",
+    ".mobi",
+    ".azw",
+    ".azw3",
+    ".fb2",
+    ".docx",
+  ],
   features: [
     "PDF text extraction → Markdown",
     "Markdown → stylized HTML",
     "CSV ↔ Excel conversion",
     "EPUB creation",
+    "eBook format conversion (MOBI, AZW, FB2)",
   ],
   color: "#3B82F6",
 };
