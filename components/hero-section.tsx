@@ -55,7 +55,7 @@ export function HeroSection() {
               symbol="$"
               variant="bordered"
               classNames={{
-                base: "border-[#334155] bg-[#1E293B] max-w-full",
+                base: "border-[#334155] bg-[#1E293B] min-w-full w-fit",
                 pre: "font-mono text-sm text-[#F1F5F9] whitespace-nowrap",
                 symbol: "text-[#34D399]",
                 copyButton: "text-[#94A3B8] hover:text-[#F1F5F9]",

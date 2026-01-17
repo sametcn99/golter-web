@@ -8,6 +8,29 @@ const installCommands = {
     label: "Quick Install",
     command: "go install github.com/sametcn99/golter@latest",
   },
+  taskfile: {
+    label: "Build with Taskfile (Recommended)",
+    commands: [
+      { text: "# Clone repository", type: "comment" },
+      {
+        text: "git clone https://github.com/sametcn99/golter.git",
+        type: "command",
+      },
+      { text: "cd golter", type: "command" },
+      { text: "", type: "empty" },
+      { text: "# Install task", type: "comment" },
+      {
+        text: "go install github.com/go-task/task/v3/cmd/task@latest",
+        type: "command",
+      },
+      { text: "", type: "empty" },
+      { text: "# Install golter", type: "comment" },
+      { text: "task install", type: "command" },
+      { text: "", type: "empty" },
+      { text: "# Run", type: "comment" },
+      { text: "golter", type: "command" },
+    ],
+  },
   linux: {
     label: "Linux",
     commands: [
@@ -19,13 +42,21 @@ const installCommands = {
       { text: "", type: "empty" },
       { text: "# Build", type: "comment" },
       { text: "go build -o golter main.go", type: "command" },
+      { text: "", type: "empty" },
+      { text: "# Run", type: "comment" },
+      { text: "./golter", type: "command" },
     ],
   },
   macos: {
     label: "macOS",
     commands: [
+      { text: "# Homebrew", type: "comment" },
       { text: "brew install ffmpeg", type: "command" },
+      { text: "", type: "empty" },
+      { text: "# Build", type: "comment" },
       { text: "go build -o golter main.go", type: "command" },
+      { text: "", type: "empty" },
+      { text: "# Run", type: "comment" },
       { text: "./golter", type: "command" },
     ],
   },
@@ -37,6 +68,9 @@ const installCommands = {
       { text: "", type: "empty" },
       { text: "# Build", type: "comment" },
       { text: "go build -o golter.exe main.go", type: "command" },
+      { text: "", type: "empty" },
+      { text: "# Run", type: "comment" },
+      { text: "./golter", type: "command" },
     ],
   },
 };
@@ -100,34 +134,28 @@ export function InstallSection() {
           {/* Taskfile Install */}
           <div className="rounded-lg border border-[#334155] bg-[#1E293B] p-6">
             <h3 className="text-lg font-mono font-semibold text-[#F1F5F9] mb-4 flex items-center gap-2">
-              Build with Taskfile (Recommended)
+              {installCommands.taskfile.label}
             </h3>
             <div className="rounded-lg border border-[#334155] bg-[#0F172A] p-4 font-mono text-sm overflow-x-auto">
               <div className="min-w-max">
-                <div className="text-[#64748B]"># Clone repository</div>
-                <div className="text-[#F1F5F9]">
-                  <span className="text-[#34D399]">$ </span>git clone
-                  https://github.com/sametcn99/golter.git
-                </div>
-                <div className="text-[#F1F5F9]">
-                  <span className="text-[#34D399]">$ </span>cd golter
-                </div>
-                <div className="h-4" />
-                <div className="text-[#64748B]"># Install task</div>
-                <div className="text-[#F1F5F9]">
-                  <span className="text-[#34D399]">$ </span>go install
-                  github.com/go-task/task/v3/cmd/task@latest
-                </div>
-                <div className="h-4" />
-                <div className="text-[#64748B]"># Install golter</div>
-                <div className="text-[#F1F5F9]">
-                  <span className="text-[#34D399]">$ </span>task install
-                </div>
-                <div className="h-4" />
-                <div className="text-[#64748B]"># Run</div>
-                <div className="text-[#F1F5F9]">
-                  <span className="text-[#34D399]">$ </span>golter
-                </div>
+                {installCommands.taskfile.commands.map((cmd, idx) => {
+                  if (cmd.type === "comment")
+                    return (
+                      <div key={idx} className="text-[#64748B]">
+                        {cmd.text}
+                      </div>
+                    );
+                  if (cmd.type === "command")
+                    return (
+                      <div key={idx} className="text-[#F1F5F9]">
+                        <span className="text-[#34D399]">$ </span>
+                        {cmd.text}
+                      </div>
+                    );
+                  if (cmd.type === "empty")
+                    return <div key={idx} className="h-4" />;
+                  return null;
+                })}
               </div>
             </div>
           </div>
@@ -149,63 +177,34 @@ export function InstallSection() {
                   "group-data-[selected=true]:text-white text-[#94A3B8]",
               }}
             >
-              <Tab key="linux" title="Linux">
-                <div className="mt-4 rounded-lg border border-[#334155] bg-[#0F172A] p-4 font-mono text-sm overflow-x-auto">
-                  <div className="min-w-max">
-                    <div className="text-[#64748B]"># Ubuntu/Debian</div>
-                    <div className="text-[#F1F5F9]">
-                      <span className="text-[#34D399]">$ </span>sudo apt update
-                      && sudo apt install ffmpeg
-                    </div>
-                    <div className="h-4" />
-                    <div className="text-[#64748B]"># Arch Linux</div>
-                    <div className="text-[#F1F5F9]">
-                      <span className="text-[#34D399]">$ </span>sudo pacman -S
-                      ffmpeg
-                    </div>
-                    <div className="h-4" />
-                    <div className="text-[#64748B]"># Build</div>
-                    <div className="text-[#F1F5F9]">
-                      <span className="text-[#34D399]">$ </span>go build -o
-                      golter main.go
-                    </div>
-                  </div>
-                </div>
-              </Tab>
-              <Tab key="macos" title="macOS">
-                <div className="mt-4 rounded-lg border border-[#334155] bg-[#0F172A] p-4 font-mono text-sm overflow-x-auto">
-                  <div className="min-w-max">
-                    <div className="text-[#F1F5F9]">
-                      <span className="text-[#34D399]">$ </span>brew install
-                      ffmpeg
-                    </div>
-                    <div className="text-[#F1F5F9]">
-                      <span className="text-[#34D399]">$ </span>go build -o
-                      golter main.go
-                    </div>
-                    <div className="text-[#F1F5F9]">
-                      <span className="text-[#34D399]">$ </span>./golter
+              {(["linux", "macos", "windows"] as const).map((platform) => (
+                <Tab key={platform} title={installCommands[platform].label}>
+                  <div className="mt-4 rounded-lg border border-[#334155] bg-[#0F172A] p-4 font-mono text-sm overflow-x-auto">
+                    <div className="min-w-max">
+                      {installCommands[platform].commands.map((cmd, idx) => {
+                        if (cmd.type === "comment")
+                          return (
+                            <div key={idx} className="text-[#64748B]">
+                              {cmd.text}
+                            </div>
+                          );
+                        if (cmd.type === "command")
+                          return (
+                            <div key={idx} className="text-[#F1F5F9]">
+                              <span className="text-[#34D399]">
+                                {platform === "windows" ? "> " : "$ "}
+                              </span>
+                              {cmd.text}
+                            </div>
+                          );
+                        if (cmd.type === "empty")
+                          return <div key={idx} className="h-4" />;
+                        return null;
+                      })}
                     </div>
                   </div>
-                </div>
-              </Tab>
-              <Tab key="windows" title="Windows">
-                <div className="mt-4 rounded-lg border border-[#334155] bg-[#0F172A] p-4 font-mono text-sm overflow-x-auto">
-                  <div className="min-w-max">
-                    <div className="text-[#64748B]"># Using winget</div>
-                    <div className="text-[#F1F5F9]">
-                      <span className="text-[#34D399]">&gt; </span>winget
-                      install ffmpeg
-                    </div>
-                    <div className="h-4" />
-                    <div className="text-[#64748B]"># Build</div>
-                    <div className="text-[#F1F5F9]">
-                      <span className="text-[#34D399]">&gt; </span>go build -o
-                      golter.exe main.go
-                    </div>
-                  </div>
-                </div>
-              </Tab>
+                </Tab>
+              ))}
             </Tabs>
           </div>
         </motion.div>
