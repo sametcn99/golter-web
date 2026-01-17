@@ -192,31 +192,6 @@
   animation: blink 1s step-end infinite;
 }
 
-/* Scanline effect for terminal aesthetic */
-@keyframes scanline {
-  0% {
-    transform: translateY(-100%);
-  }
-  100% {
-    transform: translateY(100vh);
-  }
-}
-
-.scanline {
-  position: absolute;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(
-    to right,
-    transparent,
-    var(--primary-light),
-    transparent
-  );
-  opacity: 0.1;
-  animation: scanline 8s linear infinite;
-  pointer-events: none;
-}
-
 /* Terminal glow effect */
 .terminal-glow {
   box-shadow:
