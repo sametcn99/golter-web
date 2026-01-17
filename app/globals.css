@@ -1,0 +1,231 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* Updated color palette to match the Go TUI styling file */
+:root {
+  /* Primary colors - Vivid Purple */
+  --primary: #8b5cf6;
+  --primary-dark: #6d28d9;
+  --primary-light: #a78bfa;
+
+  /* Secondary colors - Emerald Green */
+  --secondary: #10b981;
+  --secondary-light: #34d399;
+
+  /* Accent colors - Amber */
+  --accent: #f59e0b;
+  --accent-light: #fbbf24;
+
+  /* Status colors */
+  --error: #ef4444;
+  --error-light: #f87171;
+  --success: #10b981;
+  --success-light: #34d399;
+  --warning: #f59e0b;
+  --warning-light: #fbbf24;
+  --info: #3b82f6;
+  --info-light: #60a5fa;
+
+  /* Neutral colors - Dark Slate theme */
+  --background: #0f172a;
+  --background-light: #1e293b;
+  --foreground: #f1f5f9;
+  --foreground-dim: #94a3b8;
+  --muted: #64748b;
+  --border: #334155;
+  --highlight-bg: #1e3a5f;
+
+  /* File type colors */
+  --image-color: #ec4899;
+  --video-color: #f43f5e;
+  --audio-color: #8b5cf6;
+  --document-color: #3b82f6;
+
+  /* Card and popover */
+  --card: #1e293b;
+  --card-foreground: #f1f5f9;
+  --popover: #1e293b;
+  --popover-foreground: #f1f5f9;
+
+  /* Ring and input */
+  --ring: #8b5cf6;
+  --input: #334155;
+
+  --radius: 0.5rem;
+}
+
+.dark {
+  --background: #030712;
+  --foreground: #f1f5f9;
+  --card: #0f172a;
+  --card-foreground: #f1f5f9;
+  --popover: #0f172a;
+  --popover-foreground: #f1f5f9;
+  --primary: #a78bfa;
+  --primary-foreground: #0f172a;
+  --secondary: #34d399;
+  --secondary-foreground: #0f172a;
+  --muted: #334155;
+  --muted-foreground: #94a3b8;
+  --accent: #fbbf24;
+  --accent-foreground: #0f172a;
+  --destructive: #f87171;
+  --destructive-foreground: #0f172a;
+  --border: #334155;
+  --input: #334155;
+  --ring: #a78bfa;
+  --chart-1: #6d28d9;
+  --chart-2: #10b981;
+  --chart-3: #3b82f6;
+  --chart-4: #f59e0b;
+  --chart-5: #ec4899;
+  --sidebar: #0f172a;
+  --sidebar-foreground: #f1f5f9;
+  --sidebar-primary: #a78bfa;
+  --sidebar-primary-foreground: #0f172a;
+  --sidebar-accent: #fbbf24;
+  --sidebar-accent-foreground: #0f172a;
+  --sidebar-border: #334155;
+  --sidebar-ring: #a78bfa;
+}
+
+@theme inline {
+  --font-sans: "Geist", "Geist Fallback", system-ui, sans-serif;
+  --font-mono: "Geist Mono", "Geist Mono Fallback", monospace;
+
+  --color-background: var(--background);
+  --color-background-light: var(--background-light);
+  --color-foreground: var(--foreground);
+  --color-foreground-dim: var(--foreground-dim);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-dark: var(--primary-dark);
+  --color-primary-light: var(--primary-light);
+  --color-secondary: var(--secondary);
+  --color-secondary-light: var(--secondary-light);
+  --color-accent: var(--accent);
+  --color-accent-light: var(--accent-light);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--foreground-dim);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-highlight-bg: var(--highlight-bg);
+
+  /* File type colors */
+  --color-image: var(--image-color);
+  --color-video: var(--video-color);
+  --color-audio: var(--audio-color);
+  --color-document: var(--document-color);
+
+  /* Status colors */
+  --color-error: var(--error);
+  --color-error-light: var(--error-light);
+  --color-success: var(--success);
+  --color-success-light: var(--success-light);
+  --color-warning: var(--warning);
+  --color-warning-light: var(--warning-light);
+  --color-info: var(--info);
+  --color-info-light: var(--info-light);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --color-sidebar: var(--background);
+  --color-sidebar-foreground: var(--foreground);
+  --color-sidebar-primary: var(--primary);
+  --color-sidebar-primary-foreground: var(--background);
+  --color-sidebar-accent: var(--accent);
+  --color-sidebar-accent-foreground: var(--background);
+  --color-sidebar-border: var(--border);
+  --color-sidebar-ring: var(--ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground font-mono;
+  }
+}
+
+/* Terminal-style scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background-light);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--muted);
+}
+
+/* Terminal cursor blink animation */
+@keyframes blink {
+  0%,
+  50% {
+    opacity: 1;
+  }
+  51%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.cursor-blink {
+  animation: blink 1s step-end infinite;
+}
+
+/* Scanline effect for terminal aesthetic */
+@keyframes scanline {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100vh);
+  }
+}
+
+.scanline {
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--primary-light),
+    transparent
+  );
+  opacity: 0.1;
+  animation: scanline 8s linear infinite;
+  pointer-events: none;
+}
+
+/* Terminal glow effect */
+.terminal-glow {
+  box-shadow:
+    0 0 20px rgba(139, 92, 246, 0.2),
+    inset 0 0 60px rgba(139, 92, 246, 0.05);
+}
+
+/* Text selection with terminal colors */
+::selection {
+  background: var(--primary);
+  color: var(--background);
+}
