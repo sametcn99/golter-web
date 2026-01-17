@@ -78,10 +78,6 @@ export function HeroSection() {
             <span className="text-[#10B981]">●</span>
             Open Source
           </div>
-          <div className="flex items-center gap-2 text-[#94A3B8]">
-            <span className="text-[#FBBF24]">●</span>
-            Go 1.21+
-          </div>
         </div>
       </motion.div>
 

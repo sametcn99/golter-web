@@ -77,7 +77,6 @@ export function InstallSection() {
           {/* Quick install */}
           <div className="rounded-lg border border-[#A78BFA]/30 bg-[#1E293B] p-6 max-w-full overflow-hidden">
             <h3 className="text-lg font-mono font-semibold text-[#F1F5F9] mb-4 flex items-center gap-2">
-              <span className="text-[#10B981]">✓</span>
               One-Click Install
             </h3>
             <div className="w-full overflow-x-auto">
@@ -101,7 +100,6 @@ export function InstallSection() {
           {/* Taskfile Install */}
           <div className="rounded-lg border border-[#334155] bg-[#1E293B] p-6">
             <h3 className="text-lg font-mono font-semibold text-[#F1F5F9] mb-4 flex items-center gap-2">
-              <span className="text-[#FBBF24]">⚡</span>
               Build with Taskfile (Recommended)
             </h3>
             <div className="rounded-lg border border-[#334155] bg-[#0F172A] p-4 font-mono text-sm overflow-x-auto">
